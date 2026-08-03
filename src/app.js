@@ -2,6 +2,7 @@ const express = require("express");
 const express_session = require("express-session");
 
 const biosRouter = require("./routes/bios.routes");
+const aboutRouter = require("./routes/abouts.routes");
 
 const env = require("./config/dotenv.config");
 const error_handler = require("./middleware/err_handler.middleware");
@@ -10,6 +11,8 @@ const { connectToMongoDB } = require("./db/mongo.db");
 
 const app = express();
 connectToMongoDB();
+
+console.log(env.mongo_uri);
 
 app.use(express.json());
 app.use(
@@ -31,6 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/bios", biosRouter);
+app.use("/about", aboutRouter);
 
 app.use(error_handler);
 
