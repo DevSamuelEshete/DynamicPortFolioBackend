@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/bios", biosRouter);
-app.use("/about", aboutRouter);
+app.use("/abouts", aboutRouter);
 
 app.use(error_handler);
 

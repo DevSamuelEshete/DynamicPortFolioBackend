@@ -6,7 +6,7 @@ const abouts_schema = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    img_url: { type: String, required: false },
+    imgs_url: { type: Array, required: true, default: [] },
   },
   { timestamps: true },
 );

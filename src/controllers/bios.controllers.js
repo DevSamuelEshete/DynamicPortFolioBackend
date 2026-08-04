@@ -1,6 +1,21 @@
 const { mongoose } = require("../db/mongo.db");
 const biosModel = require("../models/bios.model");
 
+async function getBios(req, res) {
+  const { id } = req.params;
+  if (!id) {
+    const bios = await biosModel.find();
+    return res
+      .status(200)
+      .json({ message: "successfully fetched bio(s)", data: { bios } });
+  }
+
+  const bio = await biosModel.findById(id);
+  return res
+    .status(200)
+    .json({ message: "successfully fetched bios", data: { bio } });
+}
+
 async function createBios(req, res) {
   const { name, description, pfp_url, cv_url } = req.body;
   if (!description)
@@ -29,4 +44,4 @@ async function updateBios(req, res) {
     .json({ message: `successfully updated: '${id}'`, date: { bio } });
 }
 
-module.exports = { createBios, updateBios };
+module.exports = { getBios, createBios, updateBios };
