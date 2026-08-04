@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const express_session = require("express-session");
 
 const biosRouter = require("./routes/bios.routes");
@@ -15,6 +16,8 @@ connectToMongoDB();
 console.log(env.mongo_uri);
 
 app.use(express.json());
+app.use(cors());
+
 app.use(
   express_session({
     secret: env.session_secret,
